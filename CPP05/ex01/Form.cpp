@@ -26,7 +26,6 @@ Form &Form::operator=(Form const &copy)
 {
     this -> _signed = copy._signed;
     return(*this);
-
 }
 
 std::string Form::getName(void) const
@@ -64,7 +63,7 @@ std::ostream &operator<<(std::ostream &out, Form const &obj)
 void        Form::beSigned(const Bureaucrat &bureaucrat)
 {
     if (this->_signed == true)
-        std::cout << "Form already signed bro" << std::endl;
+        std::cout << "Form already signed." << std::endl;
     else if (this->_grade_to_sign < bureaucrat.getGrade()){
         std::cout << "Bureucrat " << bureaucrat.getName() << " not qualified to sign this form." << std::endl;
         throw GradeTooLowException();

@@ -87,13 +87,17 @@ int main() {
     std::cout << YELLOW << "Starting tests for Bureaucrat and Form classes...\n" << RESET;
 
     testBureaucratCreation();
+    std::cout << "=====================================================" << std::endl;
     testFormCreation();
+    std::cout << "=====================================================" << std::endl;
     testSigningForm();
-
+    std::cout << "=====================================================" << std::endl;
     testInvalidBureaucratCreation();
+    std::cout << "=====================================================" << std::endl;
     testInvalidFormCreation();
+    std::cout << "=====================================================" << std::endl;
     testFormSigningFailure();
-
-    std::cout << YELLOW << "All tests completed." << RESET << std::endl;
+    std::cout << "=====================================================" << std::endl;
+    std::cout << YELLOW << "Tests completed." << RESET << std::endl;
     return 0;
 }
