@@ -8,9 +8,9 @@
 # define LOWEST_GRADE 150
 
 #include <iostream>
-#include "Form.hpp"
+#include "AForm.hpp"
 
-class Form;
+class AForm;
 
 class Bureaucrat {
 
@@ -18,17 +18,18 @@ class Bureaucrat {
         std::string _name;
         int         _grade;
         Bureaucrat();
-public:
-        //done
-        Bureaucrat(std::string _name, int grade); //done
-        ~Bureaucrat(); //done
-        Bureaucrat(Bureaucrat const &cls); //done
-        Bureaucrat & operator=(Bureaucrat const & obj); //done
-        std::string getName() const;//done
-        int getGrade() const; //done
-        void Increment(); //done
-        void Decrement(); //done
-        void    signForm(Form &form);
+    public:
+        Bureaucrat(std::string _name, int grade); 
+        ~Bureaucrat(); 
+        Bureaucrat(Bureaucrat const &cls); 
+        Bureaucrat & operator=(Bureaucrat const & obj); 
+        std::string getName() const;
+
+        int getGrade() const; 
+        void Increment(); 
+        void Decrement(); 
+        void    signForm(AForm &AForm);
+        void    executeForm(AForm const & form);
         class	GradeTooHighException: public std::exception
         {
             public:

@@ -3,23 +3,33 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -I./includes
 RM = rm -rf
 
-SRCS = main.cpp Bureaucrat.cpp Form.cpp
-
+# Adjust source file paths as needed
+SRCS = src/main.cpp src/Bureaucrat.cpp src/AForm.cpp src/PresidentialPardonForm.cpp src/RobotomyRequestForm.cpp src/ShrubberyCreationForm.cpp
+# Change to bin folder for object files
 OBJS = $(SRCS:.cpp=.o)
+OBJS := $(addprefix bin/,$(notdir $(OBJS)))
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 .SILENT:
-%.o: %.cpp
-	${CC} ${CFLAGS} -c $< -o $@
+
+# Create bin directory if it does not exist and compile object files into it
+bin/%.o: src/%.cpp
+	mkdir -p bin
+	$(CC) $(CFLAGS) -c $< -o $@
+
+bin/%.o: header/%.cpp
+	mkdir -p bin
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) bin/*.o
 
 fclean: clean
 	$(RM) $(NAME)
+
 re: fclean all
 
 run: all clean

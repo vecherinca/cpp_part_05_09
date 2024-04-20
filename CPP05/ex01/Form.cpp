@@ -11,7 +11,6 @@ Form::Form(std::string name, int gradeToSign, int gradeToExec): _name(name), _si
         throw  GradeTooLowException();
     this->_grade_to_sign = gradeToSign;
     this->_grade_to_execute = gradeToExec;
-    // do we need to check stuff here?
     std::cout << "[Form] Constructor called" << " with name: " << this ->_name << " with grade to sign: " << this ->_grade_to_sign << " with grade to exec: " << this ->_grade_to_execute <<std::endl;
 }
 Form::~Form(void)
@@ -26,8 +25,6 @@ Form::Form(const Form &copy) {
 Form &Form::operator=(Form const &copy)
 {
     this -> _signed = copy._signed;
-    //this -> _grade_to_sign = copy.getGradeToSign();
-    //this -> _grade_to_execute = copy.getGradeToExecute();
     return(*this);
 
 }

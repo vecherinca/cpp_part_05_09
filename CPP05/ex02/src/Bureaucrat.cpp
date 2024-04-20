@@ -1,5 +1,5 @@
 
-#include "Bureaucrat.hpp"
+#include "../header/Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat():_name("None")
 {
@@ -19,6 +19,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade)
         throw (Bureaucrat::GradeTooLowException());
     if (grade < HIGHEST_GRADE)
         throw (Bureaucrat::GradeTooHighException());
+
     this -> _grade = grade;
     std::cout << "Constructor [Bureaucrat] called with name initialised to " << this -> _name << ". Grade is initialised to " << this -> _grade<< std::endl;
 }
@@ -77,15 +78,21 @@ std::ostream & operator<<(std::ostream & o, Bureaucrat const & obj)
     return o;
 }
 
-void    Bureaucrat::signForm(Form &form)
+void    Bureaucrat::signForm(AForm &AForm)
 {
     try
     {
-        form.beSigned(*this);
-        std::cout << "The bureaucrat" << " signed " << form.getName() << std::endl;
+        AForm.beSigned(*this);
+        std::cout << "The bureaucrat" << " signed " << AForm.getName() << std::endl;
     }
     catch(const std::exception& e)
     {
-        std::cout << "The bureaucrat" << " cannot sign " << form.getName() << " because " << e.what() << std::endl;
+        std::cout << "The bureaucrat" << " cannot sign " << AForm.getName() << " because " << e.what() << std::endl;
     }
+}
+
+void    Bureaucrat::executeForm(AForm const & form)
+{
+        //add if elses
+        form.execute(*this);
 }

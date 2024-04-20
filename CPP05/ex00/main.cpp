@@ -6,13 +6,13 @@ const std::string RESET = "\033[0m";
 
 int main() {
     try {
-        Bureaucrat john("John Doe", 2); // Assume 1 is the highest grade
+        Bureaucrat john("John Doe", 2); 
         std::cout << john.getName() << " is created with grade: " << john.getGrade() << std::endl;
 
-        john.Increment(); // This should be fine
+        john.Increment(); 
         std::cout << "After increment, " << john.getName() << "'s grade is: " << john.getGrade() << std::endl;
 
-        john.Increment(); // This should throw GradeTooHighException
+        john.Increment(); 
     } catch (const Bureaucrat::GradeTooHighException& e) {
         std::cerr <<  RED << "Exception caught: " << e.what() << RESET<< std::endl;
     } catch (const Bureaucrat::GradeTooLowException& e) {
