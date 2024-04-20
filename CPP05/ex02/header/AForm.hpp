@@ -3,7 +3,9 @@
 
 #include <iostream>
 #include "Bureaucrat.hpp"
-
+#include <random>
+#include <ctime>
+# include <fstream>
 class Bureaucrat;
 
 class AForm

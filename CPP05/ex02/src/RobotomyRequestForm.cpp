@@ -1,7 +1,7 @@
 
 #include "../header/RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm(std::string const _target):AForm("RobotomyRequestForm", 25, 5), _target(_target)
+RobotomyRequestForm::RobotomyRequestForm(std::string const _target):AForm("RobotomyRequestForm", 72, 45), _target(_target)
 {
 	std::cout << "[RobotomyRequestForm] is created" << std::endl;
 }
@@ -25,6 +25,10 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm const &c
 
 int RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
+    std::srand(std::time(nullptr));
+
+    int successRate = std::rand() % 100;
+
 	if (this->getSigned() == false)
     {
         std::cout << "Form is not signed" << std::endl;
@@ -34,6 +38,11 @@ int RobotomyRequestForm::execute(Bureaucrat const & executor) const
         std::cout << "Bureucrat " << executor.getName() << " not qualified to sign this AForm." << std::endl;
         throw GradeTooLowException();
     }
-    std::cout << this -> _target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
+    std::cout << "DRRRRRRRRRRRRR DRRRRR DRRR (It is a drilling noise)"<<std::endl;
+    if (successRate < 50) { // 50% chance of success
+        std::cout << this -> _target << "The target has been robotomized successfully.\n";
+    } else {
+        std::cout << "The robotomy failed.\n";
+    }
     return(0);
 }

@@ -1,7 +1,3 @@
-//
-// Created by Мария on 07/04/2024.
-//
-
 #ifndef ROBOTOMYREQUESTFORM_HPP
 #define ROBOTOMYREQUESTFORM_HPP
 
@@ -13,7 +9,7 @@ class RobotomyRequestForm:public AForm {
 		RobotomyRequestForm(std::string const _target);
 		~RobotomyRequestForm();
 		RobotomyRequestForm(RobotomyRequestForm const &cls);
-		RobotomyRequestForm &operator=(Bureaucrat const &cls);
+		RobotomyRequestForm &operator=(RobotomyRequestForm const &cls);
 		int execute(Bureaucrat const & executor) const;
 
 	private:
