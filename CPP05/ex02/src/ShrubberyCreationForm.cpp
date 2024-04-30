@@ -26,20 +26,35 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm co
 int ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
     std::fstream file;
-
+    
+    std::string filename = this->_target + "_shrubbery"; 
 	if (this->getSigned() == false)
     {
         std::cout << "Form is not signed" << std::endl;
         return (1);
     }
     else if (this->getGradeToExecute() < executor.getGrade()){
-        std::cout << "Bureucrat " << executor.getName() << " not qualified to sign this AForm." << std::endl;
+        std::cout << "Bureucrat " << executor.getName() << " not qualified to sign this Form." << std::endl;
         throw GradeTooLowException();
     }
-    file.open(this->_target + "_shrubbery", std::fstream::out | std::fstream::trunc);
+    file.open(filename.c_str(), std::fstream::out | std::fstream::trunc);
     if (!file.good())
         std::cerr << "Failed to open shrubbery target file: " << this->_target << std::endl;
-    file << "tree";
+
+    file << "\033[32m"; 
+    file << "      /\\      \n";
+    file << "     /\\*\\     \n";
+    file << "    /\\O\\*\\    \n";
+    file << "   /*/\\/\\/\\   \n";
+    file << "  /\\O\\/\\*\\/\\  \n";
+    file << " /\\*\\/\\*\\/\\/\\ \n";
+    file << "/\\O\\/\\/*/\\/O/\\\n";
+    file << "      ||      \n";
+    file << "      ||      \n";
+    file << "      ||      \n";
+
+    file << "\033[0m"; 
+
     file.close();
     return(0);
 }

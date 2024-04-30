@@ -1,6 +1,3 @@
-//
-// Created by Мария on 07/04/2024.
-//
 
 #ifndef SHRUBBERYCREATIONFORM_HPP
 #define SHRUBBERYCREATIONFORM_HPP

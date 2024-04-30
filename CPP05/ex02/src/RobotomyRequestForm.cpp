@@ -1,5 +1,7 @@
 
 #include "../header/RobotomyRequestForm.hpp"
+#include <cstdlib>  // For rand() and srand()
+#include <ctime>  
 
 RobotomyRequestForm::RobotomyRequestForm(std::string const _target):AForm("RobotomyRequestForm", 72, 45), _target(_target)
 {
@@ -25,9 +27,8 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm const &c
 
 int RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
-    std::srand(std::time(nullptr));
 
-    int successRate = std::rand() % 100;
+    int successRate =5;
 
 	if (this->getSigned() == false)
     {
@@ -39,7 +40,7 @@ int RobotomyRequestForm::execute(Bureaucrat const & executor) const
         throw GradeTooLowException();
     }
     std::cout << "DRRRRRRRRRRRRR DRRRRR DRRR (It is a drilling noise)"<<std::endl;
-    if (successRate < 50) { // 50% chance of success
+    if (successRate < 50) { 
         std::cout << this -> _target << "The target has been robotomized successfully.\n";
     } else {
         std::cout << "The robotomy failed.\n";
