@@ -41,7 +41,6 @@ int ShrubberyCreationForm::execute(Bureaucrat const & executor) const
     if (!file.good())
         std::cerr << "Failed to open shrubbery target file: " << this->_target << std::endl;
 
-    file << "\033[32m"; 
     file << "      /\\      \n";
     file << "     /\\*\\     \n";
     file << "    /\\O\\*\\    \n";
@@ -53,7 +52,6 @@ int ShrubberyCreationForm::execute(Bureaucrat const & executor) const
     file << "      ||      \n";
     file << "      ||      \n";
 
-    file << "\033[0m"; 
 
     file.close();
     return(0);

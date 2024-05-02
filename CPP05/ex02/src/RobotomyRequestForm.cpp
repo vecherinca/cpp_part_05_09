@@ -28,7 +28,7 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm const &c
 int RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
 
-    int successRate =5;
+    std::srand(std::time(NULL));
 
 	if (this->getSigned() == false)
     {
@@ -40,7 +40,7 @@ int RobotomyRequestForm::execute(Bureaucrat const & executor) const
         throw GradeTooLowException();
     }
     std::cout << "DRRRRRRRRRRRRR DRRRRR DRRR (It is a drilling noise)"<<std::endl;
-    if (successRate < 50) { 
+    if (std::rand() % 2 == 0) { 
         std::cout << this -> _target << "The target has been robotomized successfully.\n";
     } else {
         std::cout << "The robotomy failed.\n";
