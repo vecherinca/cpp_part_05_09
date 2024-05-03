@@ -1,6 +1,6 @@
 NAME = Bureaucrat
 CC = c++
-CFLAGS =  -fsanitize=address -Wall -Wextra -Werror -std=c++98 -I./includes
+CFLAGS =  -g3 -Wall -Wextra -Werror -std=c++98 -I./includes
 RM = rm -rf
 
 # Adjust source file paths as needed
