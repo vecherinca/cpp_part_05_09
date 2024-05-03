@@ -11,7 +11,6 @@ AForm::AForm(std::string name, int gradeToSign, int gradeToExec): _name(name), _
         throw  GradeTooLowException();
     this->_grade_to_sign = gradeToSign;
     this->_grade_to_execute = gradeToExec;
-    // do we need to check stuff here?
     std::cout << "[AForm] Constructor called" << " with name: " << this ->_name << " with grade to sign: " << this ->_grade_to_sign << " with grade to exec: " << this ->_grade_to_execute <<std::endl;
 }
 AForm::~AForm(void)

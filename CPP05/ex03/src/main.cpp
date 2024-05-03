@@ -9,18 +9,21 @@
 const std::string RED = "\033[31m";
 const std::string RESET = "\033[0m";
 
-void printInColor(const std::string &message, const std::string &color) {
-    std::cout << color << message << "\033[0m" << std::endl;
-}
 
 int main() {
+    // Properly instantiate an Intern object.
+    Intern *lowlyIntern = new Intern();
+    
+    // Safely use the Intern object.
+    AForm *form = lowlyIntern->makeForm("shrubbery creation", "target");
+    
+    // Check if the form was created successfully before attempting to delete it.
+    if (form != NULL) {
+        delete form;
+    }
 
-    {
-		Intern someRandomIntern;
-		AForm* rrf;
-		rrf = someRandomIntern.makeForm("shrubbery creation", "TEST");
-        delete rrf;
-	}
+    // Clean up the Intern object to prevent memory leaks.
+    delete lowlyIntern;
 
-
+    return 0;
 }

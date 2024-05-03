@@ -17,14 +17,13 @@ Intern::Intern(const Intern &copy)
 }
 Intern &Intern::operator=(const Intern& copy)
 {
-	if (this == &copy)
-		return (*this);
+	(void) copy;
 
 	return (*this);
 }
 
 AForm* createShrubberyCreationForm(const std::string& target) {
-    return new ShrubberyCreationForm(target);
+    return (new ShrubberyCreationForm(target));
 }
 
 AForm* createRobotomyRequestForm(const std::string& target) {
@@ -36,6 +35,8 @@ AForm* createPresidentialPardonForm(const std::string& target) {
 }
 
 AForm* Intern::makeForm(std::string name, std::string target){
+
+	AForm *Form;
 
 	typedef AForm* (*FormCreationFunc)(const std::string&);
 	std::string strings[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
@@ -50,12 +51,14 @@ AForm* Intern::makeForm(std::string name, std::string target){
 	{
 		if (strings[i] == name)
 		{
+			std::cout << "lol: "<<i << std::endl;
 			std::cout << "Intern creates " << name << std::endl;
-			return (formCreationFuncs[i](target));
+			Form = formCreationFuncs[i](target);
+			return(Form);
+			
 		}
 			
 	}
-	
 	std::cout << "Intern can't create " << name <<  '\n';
 	return(NULL);
 }

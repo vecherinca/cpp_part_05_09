@@ -9,7 +9,7 @@ class Bureaucrat;
 
 class AForm
 {
-    private:
+    protected:
         const std::string _name;
         bool _signed;
         int _grade_to_sign;
@@ -18,7 +18,7 @@ class AForm
         AForm(std::string name, int gradeToSign, int initGradeExec); 
         AForm(const AForm &copy); 
         AForm &operator=(const AForm &copy); 
-        ~AForm();
+        virtual ~AForm(void);
         std::string getName() const; 
         bool        getSigned() const; 
         int         getGradeToSign() const; 
