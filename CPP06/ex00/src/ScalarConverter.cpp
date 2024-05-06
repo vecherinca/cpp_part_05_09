@@ -148,7 +148,7 @@ float	toFloat(std::string &input)
 	value = atof(input.c_str());
 	if (value > FLT_MAX || value < -FLT_MAX)
 		throw ScalarConverter::OutputNotToDisplay();
-	return (static_cast<float>(value));
+	return (static_cast<float>(atof(input.c_str())));
 }
 
 char	toChar(std::string &input)
@@ -222,7 +222,12 @@ void ScalarConverter::convert(std::string &input)
 	}
 	try
 	{
-		std::cout << CYAN << "CONVERT TO FLOAT: " << RESET << GREEN << toFloat(input) << RESET << std::endl;
+		float f = toFloat(input);
+
+		std::cout << CYAN << "CONVERT TO FLOAT: " << RESET << GREEN << f;
+		if (f == static_cast<int>(f))
+			std::cout << ".0";
+		std::cout << "f" << RESET << std::endl;
 	}
 	catch (std::exception &e)
 	{
@@ -230,7 +235,11 @@ void ScalarConverter::convert(std::string &input)
 	}
 	try
 	{
-		std::cout << CYAN << "CONVERT TO DOUBLE: " << RESET << GREEN << toDouble(input) << RESET << std::endl;
+		double d = toDouble(input);
+		std::cout << CYAN << "CONVERT TO DOUBLE: " << RESET << GREEN<< d ;
+		if (d == static_cast<int>(d))
+			std::cout << ".0";
+		std::cout << RESET << std::endl;
 	}
 	catch (std::exception &e)
 	{
