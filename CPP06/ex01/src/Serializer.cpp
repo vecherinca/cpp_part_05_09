@@ -1,6 +1,5 @@
 #include "../headers/Serializer.hpp"
 
-#include "Serializer.hpp"
 
 Serializer::Serializer( void ){
 	
@@ -9,15 +8,19 @@ Serializer::Serializer( void ){
 
 Serializer::Serializer(const Serializer &s){
 
+	(void)s;
 	return ;
 }
 
 Serializer::~Serializer( void ){
 
+
 	return ;
 }
 
 Serializer &Serializer::operator=(const Serializer &s){
+
+	(void)s;
 
 	return (*this);
 }

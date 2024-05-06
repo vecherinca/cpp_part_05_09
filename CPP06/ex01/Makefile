@@ -1,4 +1,4 @@
-NAME = converter
+NAME = Serializer
 CC = c++
 CFLAGS =  -g3 -Wall -Wextra -Werror -std=c++98 -I./includes
 RM = rm -rf

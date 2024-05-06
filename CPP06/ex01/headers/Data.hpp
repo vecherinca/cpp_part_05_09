@@ -6,7 +6,7 @@
 typedef struct s_data{
 
 	std::string str;
-	int	i = 0;
+	int	i;
 } Data;
 
 #endif

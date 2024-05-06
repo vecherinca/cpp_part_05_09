@@ -1,9 +1,5 @@
-#include <iostream>
-#include <cerrno>
-#include <climits>
-#include <cstdio>
-#include <cfloat>
-#include <cmath>
+# include <iostream>
+# include "stdint.h"
 #include "Data.hpp"
 const std::string RED = "\033[31m";
 const std::string GREEN = "\033[32m";
@@ -21,12 +17,9 @@ class Serializer
 		Serializer &operator=(const Serializer &cls);
 	public:
 		static uintptr_t	serialize(Data* ptr){
-		
 			return (reinterpret_cast<uintptr_t>(ptr));
 		}
 		static Data			*deserialize(uintptr_t raw){
-
 			return (reinterpret_cast<Data*>(raw));
 		}
-
 };
