@@ -11,6 +11,13 @@ const std::string YELLOW = "\033[33m";
 const std::string CYAN = "\033[36m";
 const std::string RESET = "\033[0m";
 
+enum s_Type {
+	CHAR,
+	INT,
+	FLOAT,
+	DOUBLE,
+	NONE
+};
 
 class Serializer
 {
