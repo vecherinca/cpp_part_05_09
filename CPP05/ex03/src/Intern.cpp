@@ -22,6 +22,11 @@ Intern &Intern::operator=(const Intern& copy)
 	return (*this);
 }
 
+const char *Intern::FormDoesNotExists::what(void) const throw()
+{
+    return ("Intern::exception: Form does not exist. :(");
+}
+
 AForm* createShrubberyCreationForm(const std::string& target) {
     return (new ShrubberyCreationForm(target));
 }
@@ -58,6 +63,5 @@ AForm* Intern::makeForm(std::string name, std::string target){
 		}
 			
 	}
-	std::cout << "Intern can't create " << name <<  '\n';
-	return(NULL);
+	throw FormDoesNotExists();
 }
