@@ -1,3 +1,5 @@
+#ifndef WHATEVER_HPP
+#define WHATEVER_HPP
 #include <iostream>
 #include <cerrno>
 #include <climits>
@@ -13,12 +15,32 @@ const std::string RESET = "\033[0m";
 
 class Whatever
 {
-	
-	
 	public:
 		Whatever();
 		~Whatever();
 		Whatever(const Whatever &cls);
 		Whatever &operator=(const Whatever &cls);
-
+		template<typename T>
+		static void swap(T &a, T &b) {
+    	T c = a;
+    	a = b;
+    	b = c;
+    	return ;
+		}
+		template<typename T>
+			static T min(T &a, T &b) {
+			if (a > b)
+				return a;
+			else
+				return b;
+		}
+		template<typename T>
+			static T max(T &a, T &b) {
+			if (a > b)
+				return b;
+			else
+				return a;
+		}
+			
 };
+#endif

@@ -7,6 +7,7 @@ Whatever::Whatever( void ){
 
 Whatever::Whatever(const Whatever &sc){
 
+	(void) sc;
 	return ;
 }
 
@@ -16,6 +17,8 @@ Whatever::~Whatever( void ){
 }
 
 Whatever &Whatever::operator=(const Whatever &sc){
+
+		(void) sc;
 
 	return (*this);
 }

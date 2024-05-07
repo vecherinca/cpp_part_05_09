@@ -1,10 +1,10 @@
-NAME = convert
+NAME = Whatever
 CC = c++
 CFLAGS =  -g3 -Wall -Wextra -Werror -std=c++98 -I./includes
 RM = rm -rf
 
 # Adjust source file paths as needed
-SRCS = src/main.cpp src/ScalarConverter.cpp
+SRCS = src/main.cpp src/Whatever.cpp
 # Change to bin folder for object files
 OBJS = $(SRCS:.cpp=.o)
 OBJS := $(addprefix bin/,$(notdir $(OBJS)))
