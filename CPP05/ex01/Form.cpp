@@ -77,10 +77,10 @@ void        Form::beSigned(const Bureaucrat &bureaucrat)
 
 const char *Form::GradeTooLowException::what(void) const throw()
 {
-    return("Sign to exec ot sign form is too low and cant sign this form");
+    return("Sign to exec or sign form is too low and cant sign this form");
 }
 
 const char *Form::GradeTooHighException::what(void) const throw()
 {
-    return("Sign to exec ot sign form is too high should be between 1 & 150");
+    return("Sign to exec or sign form is too high should be between 1 & 150");
 }
