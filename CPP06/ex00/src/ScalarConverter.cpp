@@ -108,8 +108,9 @@ int	toInt(std::string &input)
 {
 	double	value;
 
+	
 	if (input == "inf" || input == "-inf" || input == "inff"
-		|| input == "-inff")
+		|| input == "-inff" || input =="nan" || input == "nanf")
 		throw ScalarConverter::ConversionImpossible();
 	if (defineType(input) == CHAR)
 		return (static_cast<int>(input[0]));
