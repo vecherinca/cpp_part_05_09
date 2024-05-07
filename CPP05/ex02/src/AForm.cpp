@@ -65,7 +65,7 @@ std::ostream &operator<<(std::ostream &out, AForm const &obj)
 void        AForm::beSigned(const Bureaucrat &bureaucrat)
 {
     if (this->_signed == true)
-        std::cout << "AForm already signed bro" << std::endl;
+        std::cout << "AForm already signed." << std::endl;
     else if (this->_grade_to_sign < bureaucrat.getGrade()){
         std::cout << "Bureucrat " << bureaucrat.getName() << " not qualified to sign this AForm." << std::endl;
         throw GradeTooLowException();
