@@ -1,5 +1,25 @@
 
 #include "../headers/ScalarConverter.hpp"
+ScalarConverter::ScalarConverter( void ){
+
+	return ;
+}
+
+ScalarConverter::ScalarConverter(const ScalarConverter &sc){
+
+	return ;
+}
+
+ScalarConverter::~ScalarConverter( void ){
+
+	return ;
+}
+
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &sc){
+
+	return (*this);
+}
+
 
 bool	isInt(std::string &input)
 {
