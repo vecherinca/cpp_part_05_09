@@ -20,7 +20,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade)
     if (grade < HIGHEST_GRADE)
         throw (Bureaucrat::GradeTooHighException());
     this -> _grade = grade;
-    std::cout << "Constructor Called with name initialised to " << this -> _name << "Grade is initialised to " << this -> _grade<< std::endl;
+    std::cout << "Constructor Called with name initialised to " << this -> _name << std::endl << "Grade is initialised to " << this -> _grade<< std::endl;
 }
 
 const char *Bureaucrat::GradeTooHighException::what(void) const throw()
