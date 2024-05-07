@@ -5,7 +5,10 @@
 class Base {
 
 	public:
-		virtual ~Base( void );
+		virtual ~Base( void )
+		{
+			std::cout << "[Base] class destructed" << std::endl;
+		};
 };
 
 #endif
