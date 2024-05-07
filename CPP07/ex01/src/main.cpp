@@ -7,14 +7,16 @@
 #include <unistd.h> 
 
 
-void squareAndPrint(int x) {
-    std::cout << RED << x * x << " ";
+template<typename T>
+void squareAndPrint(T x) {
+    std::cout << GREEN << x * x << " " << RESET;
 }
 
-void doubleAndPrint(float x) {
-    std::cout << RED << x * 2 << " ";
+// Function template to double a value and print it in yellow color
+template<typename T>
+void doubleAndPrint(T x) {
+    std::cout << YELLOW << x * 2 << " " << RESET;
 }
-
 int main() {
     srand(time(NULL)); 
 

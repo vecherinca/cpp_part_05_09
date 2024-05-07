@@ -24,7 +24,7 @@ class Iter
 		static void iter(T *address, size_t length, void (*f)(T)) {
 
 				for (size_t i = 0; i < length; i++)
-					f(array[i]);
+					f(address[i]);
     	
     	return ;
 		}
