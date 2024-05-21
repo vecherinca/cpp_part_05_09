@@ -1,27 +1,32 @@
-#include "../headers/easyfind.hpp"
+#include "../headers/Span.hpp"
 
-int main() {
-    std::vector<int> vec;
-    vec.push_back(10);
-    vec.push_back(20);
-    vec.push_back(30);
-    vec.push_back(40);
-    vec.push_back(50);
-    int numberToFind = 30;
-    try {
-        int index = easyfind(vec, numberToFind);
-        std::cout << "Number " << numberToFind << " found at index " << index << std::endl;
-    } catch (const std::runtime_error& e) {
-        std::cout << "Error: " << e.what() << std::endl;
+int main()
+{
+    Span sp = Span(5);
+
+    try
+    {
+        sp.longestSpan();
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
     }
 
-    try {
-        numberToFind = 100;
-        int index = easyfind(vec, numberToFind);
-        std::cout << "Number " << numberToFind << " found at index " << index << std::endl;
-    } catch (const std::runtime_error& e) {
-        std::cout << "Error: " << e.what() << " for number " << numberToFind << std::endl;
+    sp.addNumber(6);
+    sp.addNumber(3);
+    sp.addNumber(17);
+    sp.addNumber(9);
+    sp.addNumber(11);
+    std::cout << sp.shortestSpan() << std::endl;
+    std::cout << sp.longestSpan() << std::endl;
+    try
+    {
+        sp.addNumber(-4);
     }
-
-    return 0;
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+return(0);
 }
