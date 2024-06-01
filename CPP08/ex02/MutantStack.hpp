@@ -1,14 +1,29 @@
-//
-// Created by Мария on 28/05/2024.
-//
 
-#ifndef CPP_PART_05_09_MUTANTSTACK_HPP
-#define CPP_PART_05_09_MUTANTSTACK_HPP
+#include <iostream>
+#include <algorithm>
+#include <list>
+#include <stack>
+#include <deque>
 
+template< typename T, class Container = std::deque< T > > 
+class MutantStack : public std::stack< T, Container >
+{
 
-class MutantStack {
+private:
 
+public:
+
+    MutantStack( void ) {};
+    ~MutantStack( void ) {};
+
+    MutantStack( const MutantStack& rhs ) { *this = rhs; }
+    MutantStack&    operator=( const MutantStack& rhs ) {
+        std::stack< T, Container >::operator=( rhs );
+        return *this;
+    }
+
+    typedef typename Container::iterator    iterator;
+
+    iterator    begin() { return this->c.begin(); }
+    iterator    end() { return this->c.end(); }
 };
-
-
-#endif //CPP_PART_05_09_MUTANTSTACK_HPP
