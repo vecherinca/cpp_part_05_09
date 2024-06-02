@@ -49,16 +49,17 @@ private:
     }
 
 public:
-    Date() : day(1), month(1), year(1900) {} // Default constructor
+    Date() : day(1), month(1), year(1900) {}
 
-    Date(int day, int month, int year) { // Constructor with parameters
+    Date(int day, int month, int year) {
         if (isValidDate(day, month, year)) {
             this->day = day;
             this->month = month;
             this->year = year;
         } else {
-            std::cout << "Invalid date entered. Setting to default values. But we need to have an error here" << std::endl;
-      
+
+            std::cerr << "Invalid date entered for the following entry." << "Day: " << day<< " Month: " <<  month<< " Year: " << year<< std::endl;
+            std::cerr << "Error value is set to zero as atof was performed before. Go check your csv to debug :) " << std::endl;
         }
     }
 
@@ -104,7 +105,5 @@ class BitcoinExchange
 	std::map <std::string, std::string> result;
 
 	public:
-	
-
 
 };
