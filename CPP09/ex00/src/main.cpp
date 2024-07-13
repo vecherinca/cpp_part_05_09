@@ -4,50 +4,48 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-std::map<std::string, double> initparser (std::string filePath)
+std::map<std::string, std::string> initparser (std::string filePath, bool is_input)
 {
 
     std::ifstream file(filePath.c_str());
     std::cout << "File open: " << file.is_open() << std::endl;
-    std::map<std::string, double> datePriceMap;
+    std::map<std::string, std::string> datePriceMap;
     std::string line;
     bool firstLine = true;
+    char sep;
     while (getline(file, line)) {
-        
          if (firstLine) {
             firstLine = false;
             continue;
         }
-
         if (line.empty())
             continue;
-        std::size_t commaPos = line.find(',');
+        if (!is_input)
+            sep=',';
+        sep = '|';
+        std::size_t commaPos = line.find(sep);
         if (commaPos == std::string::npos) continue;
         std::string date = line.substr(0, commaPos);
         std::string priceStr = line.substr(commaPos + 1);
-        double price = std::strtod(priceStr.c_str(), nullptr);
-        datePriceMap[date] = price;
+        datePriceMap[date] = priceStr;
     }
     file.close();
 
     return datePriceMap;
 }
 
-std::map <Date, double> parse_to_date (std::map<std::string, double> datePriceMap)
+std::map <Date, Value> parse_to_date (std::map<std::string, std::string> datePriceMap, bool is_input)
 {
 
-    std::map <Date, double> output;
+    std::map <Date, Value> output;
 
-
-     for (std::map<std::string, double>::iterator it = datePriceMap.begin(); it != datePriceMap.end(); ++it) {
+     for (std::map<std::string, std::string>::iterator it = datePriceMap.begin(); it != datePriceMap.end(); ++it) {
         std::string date = it->first;
-
         std::size_t firstDash = date.find('-');
         std::size_t secondDash = std::string::npos;
         if (firstDash != std::string::npos) {
             secondDash = date.find('-', firstDash + 1);
         }
-
         if (firstDash != std::string::npos && secondDash != std::string::npos) {
             std::string yearStr = date.substr(0, firstDash);
             std::string monthStr = date.substr(firstDash + 1, secondDash - firstDash - 1);
@@ -57,32 +55,49 @@ std::map <Date, double> parse_to_date (std::map<std::string, double> datePriceMa
             int month = atoi(monthStr.c_str());
             int day = atoi(dayStr.c_str());
             Date date = Date(day, month, year);
-            output[date] = it->second;
+            if (!is_input)
+                output[date] = Value(it->second);
+            else
+                output[date] = Value(it->second, is_input);
         } else {
             std::cerr << "Invalid date format." << std::endl;
         }
     }
-
     return output;
 
 }
 
-int main() {
-    
-    std::map<std::string, double> datePriceMap = initparser("src/data.csv");
-    std::cout << "Number of elements in map: " << datePriceMap.size() << std::endl;
-
-    std::map<Date, double> datePrice = parse_to_date(datePriceMap);
-
-    for (std::map<Date, double>::iterator it = datePrice.begin(); it != datePrice.end(); ++it) {
-        std::cout << it->first << ":" << it -> second <<  std::endl;
+std::map<Date, Value> init(bool is_input)
+{
+    std::map <Date, Value> dateValue;
+    std::map <std::string, std::string> datePriceMap;
+    if (!is_input) {
+        datePriceMap = initparser("src/data.csv", is_input);
+        dateValue = parse_to_date(datePriceMap, is_input);
     }
-//    for (std::map<std::string, double>::iterator it = datePriceMap.begin(); it != datePriceMap.end() ; ++it) {
-//        std::cout << it->first << ": " << it->second << std::endl;
-//    }
-    //std::cout << "LOL: " <<std::prev(datePriceMap.end()) -> first << std::endl;
+    else {
+        datePriceMap = initparser("src/input.txt", is_input);
+        dateValue = parse_to_date(datePriceMap, is_input);
+    }
+    return (dateValue);
+}
+void printMap(const std::map<Date, Value>& map) {
+    // Use iterator explicitly
+    for (std::map<Date, Value>::const_iterator it = map.begin(); it != map.end(); ++it) {
+        std::cout << "Date: " << it->first << ", Value: " << it->second << std::endl;
+    }
+}
+
+int main() {
+    // Initialize the maps
+    //std::map<Date, Value> database = init(false);
+    std::map <Date, Value> input = init(true);
+    std::cout << "Input Map:" << std::endl;
+    printMap(input);
+    // Print the maps
+//    std::cout << "Database Map:" << std::endl;
+//    printMap(database);
 
 
-    
     return 0;
 }
