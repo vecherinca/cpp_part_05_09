@@ -8,7 +8,6 @@ std::map<std::string, std::string> initparser (std::string filePath, bool is_inp
 {
 
     std::ifstream file(filePath.c_str());
-    std::cout << "File open: " << file.is_open() << std::endl;
     std::map<std::string, std::string> datePriceMap;
     std::string line;
     bool firstLine = true;
@@ -20,9 +19,9 @@ std::map<std::string, std::string> initparser (std::string filePath, bool is_inp
         }
         if (line.empty())
             continue;
+        sep = '|';
         if (!is_input)
             sep=',';
-        sep = '|';
         std::size_t commaPos = line.find(sep);
         if (commaPos == std::string::npos) continue;
         std::string date = line.substr(0, commaPos);
@@ -54,19 +53,30 @@ std::map <Date, Value> parse_to_date (std::map<std::string, std::string> datePri
             int year = atoi(yearStr.c_str());
             int month = atoi(monthStr.c_str());
             int day = atoi(dayStr.c_str());
-            Date date = Date(day, month, year);
-            if (!is_input)
-                output[date] = Value(it->second);
-            else
-                output[date] = Value(it->second, is_input);
+            try{
+                Date date = Date(day, month, year);
+                if (!is_input)
+                    output[date] = Value(it->second);
+                else
+                    output[date] = Value(it->second, is_input);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cerr << "Error: " << e.what() << std::endl;
+            }
+           
         } else {
-            std::cerr << "Invalid date format." << std::endl;
+            std::cerr << "Invalid format." << std::endl;
         }
     }
     return output;
 
 }
 
+void printMap(const std::map<Date, Value>& map) {
+    for (std::map<Date, Value>::const_iterator it = map.begin(); it != map.end(); ++it) {
+        std::cout << "Date: " << it->first << ", Value: " << it->second << std::endl;
+    }
+}
 std::map<Date, Value> init(bool is_input)
 {
     std::map <Date, Value> dateValue;
@@ -74,6 +84,7 @@ std::map<Date, Value> init(bool is_input)
     if (!is_input) {
         datePriceMap = initparser("src/data.csv", is_input);
         dateValue = parse_to_date(datePriceMap, is_input);
+
     }
     else {
         datePriceMap = initparser("src/input.txt", is_input);
@@ -81,23 +92,12 @@ std::map<Date, Value> init(bool is_input)
     }
     return (dateValue);
 }
-void printMap(const std::map<Date, Value>& map) {
-    // Use iterator explicitly
-    for (std::map<Date, Value>::const_iterator it = map.begin(); it != map.end(); ++it) {
-        std::cout << "Date: " << it->first << ", Value: " << it->second << std::endl;
-    }
-}
 
 int main() {
     // Initialize the maps
-    //std::map<Date, Value> database = init(false);
+    // std::map<Date, Value> database = init(false);
     std::map <Date, Value> input = init(true);
-    std::cout << "Input Map:" << std::endl;
+ 
     printMap(input);
-    // Print the maps
-//    std::cout << "Database Map:" << std::endl;
-//    printMap(database);
-
-
     return 0;
 }
