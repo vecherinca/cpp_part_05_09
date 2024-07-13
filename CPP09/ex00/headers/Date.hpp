@@ -78,11 +78,13 @@ public:
     }
 	
     bool operator<(const Date& other) const {
-        if (year != other.year)
-            return year < other.year;
-        if (month != other.month)
-            return month < other.month;
+        if (year != other.year) return year < other.year;
+        if (month != other.month) return month < other.month;
         return day < other.day;
+    }
+
+	bool operator==(const Date& other) const {
+        return year == other.year && month == other.month && day == other.day;
     }
 
 	int getDay() const { return day; }
