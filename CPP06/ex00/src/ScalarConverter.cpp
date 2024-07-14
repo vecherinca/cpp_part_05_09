@@ -5,21 +5,19 @@ ScalarConverter::ScalarConverter( void ){
 	return ;
 }
 
-ScalarConverter::ScalarConverter(const ScalarConverter &sc){
-
-	return ;
-}
-
 ScalarConverter::~ScalarConverter( void ){
 
 	return ;
 }
 
-ScalarConverter &ScalarConverter::operator=(const ScalarConverter &sc){
 
+ScalarConverter::ScalarConverter(ScalarConverter const & src) {
+	*this = src;
+}
+ScalarConverter & ScalarConverter::operator=(ScalarConverter const & src) {
+	if (this != &src) {}
 	return (*this);
 }
-
 
 bool	isInt(std::string &input)
 {
@@ -78,8 +76,10 @@ bool	isDouble(std::string &input)
 
 	i = 0;
 	len = input.length();
-	if (input == "-inf" || input == "+inf" || input == "nan")
+
+	if (input == "-inf" || input == "+inf" || input == "nan" || input == "inf" )
 		return (true);
+
 	if (input[i] == '+' || input[i] == '-')
 		i++;
 	while (i < len && isdigit(input[i]))
@@ -146,7 +146,7 @@ double	toDouble(std::string &input)
 
 	if (input == "-inff" || input == "-inf")
 		return (-DBL_MAX * 2);
-	if (input == "+inff" || input == "+inf")
+	if (input == "+inff" || input == "+inf" || input == "inff" || input == "inf")
 		return (DBL_MAX * 2);
 	if (defineType(input) == CHAR)
 		return (static_cast<double>(input[0]));
@@ -162,7 +162,7 @@ float	toFloat(std::string &input)
 
 	if (input == "-inff" || input == "-inf")
 		return (-FLT_MAX * 2);
-	if (input == "+inff" || input == "+inf")
+	if (input == "+inff" || input == "+inf" || input == "inff" || input == "inf")
 		return (FLT_MAX * 2);
 	if (defineType(input) == CHAR)
 		return (static_cast<float>(input[0]));
