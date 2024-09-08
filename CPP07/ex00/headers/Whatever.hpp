@@ -30,16 +30,16 @@ class Whatever
 		template<typename T>
 			static T min(T &a, T &b) {
 			if (a > b)
-				return a;
-			else
 				return b;
+			else
+				return a;
 		}
 		template<typename T>
 			static T max(T &a, T &b) {
 			if (a > b)
-				return b;
-			else
 				return a;
+			else
+				return b;
 		}
 			
 };

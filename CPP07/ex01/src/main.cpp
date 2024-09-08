@@ -12,7 +12,6 @@ void squareAndPrint(T x) {
     std::cout << GREEN << x * x << " " << RESET;
 }
 
-// Function template to double a value and print it in yellow color
 template<typename T>
 void doubleAndPrint(T x) {
     std::cout << YELLOW << x * 2 << " " << RESET;
