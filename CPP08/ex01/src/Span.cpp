@@ -16,7 +16,7 @@ Span::Span(const Span &cls) : max_length(cls.max_length), vector(cls.vector), cu
 }
 
 Span& Span::operator=(const Span &cls) {
-    if (this != &cls) { // Protect against self-assignment
+    if (this != &cls) { 
         std::cout << "Assignment operator called: Assigning Span with new max_length " << cls.max_length << std::endl;
         max_length = cls.max_length;
         vector = cls.vector;
