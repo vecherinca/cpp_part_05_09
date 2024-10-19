@@ -86,18 +86,34 @@ std::map<Date, Value> return_data() {
     return parse_to_date<std::map<Date, Value>, std::map<std::string, std::string> >(myMap, false);
 }
 
+
 std::multimap<Date, Value> return_input() {
     std::multimap<std::string, std::string> myMap = initparser<std::multimap<std::string, std::string> >("src/input.txt", true);
-    return parse_to_date<std::multimap<Date, Value>, std::multimap<std::string, std::string> >(myMap, false);
+    return parse_to_date<std::multimap<Date, Value>, std::multimap<std::string, std::string> >(myMap, true);
 }
-
-
-int main() {
-    // Initialize the maps
-    // std::map<Date, Value> database = init(false);
-    std::multimap<Date, Value> input = return_input();
-    for (std::multimap<Date, Value>::const_iterator it = input.begin(); it != input.end(); ++it) {
-        std::cout << "Date: " << it->first << ", Value: " << it->second << std::endl;
+void return_computed_values(std::multimap<Date, Value> input, std::map<Date, Value> db)
+{
+    for (std::multimap<Date, Value>::const_iterator it = input.begin(); it != input.end(); ++it)
+    {
+        std::map<Date, Value>::const_iterator db_it = db.find(it->first);
+        if (db_it != db.end()) {
+            std::cout << "Key: " << db_it->first << " -> Output: " << db_it->second.getValue() * it->second.getValue() << std::endl;
+        } else {
+            db_it = db.lower_bound(it->first);
+            if (db_it == db.begin()) {
+                std::cout << "No lower date available for key " << it->first << std::endl;
+            } else {
+                --db_it; 
+                std::cout << "Closest lower date for key " << it->first << " -> Key: " << db_it->first << " -> Output: " << db_it->second.getValue() * it->second.getValue() << std::endl;
+            }
+        }
     }
+}
+int main() {
+
+    std::map<Date, Value> databse = return_data();
+    std::multimap<Date, Value> input = return_input();
+    return_computed_values(input,databse);
+
     return 0;
 }
