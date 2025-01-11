@@ -22,7 +22,7 @@ private:
     }
 
     template <typename T>
-    static void binary(T& container, size_t element) {
+    static void binary(T& container, int element) {
 
         int left = 0;
         int right = container.size() - 1;
@@ -63,7 +63,7 @@ public:
         sort(biggests);
 
         for (size_t i = 0; i < container.size(); i += 2)
-            binary_insert(biggests, container[i]);
+            binary(biggests, container[i]);
 
         container = biggests;
     }
