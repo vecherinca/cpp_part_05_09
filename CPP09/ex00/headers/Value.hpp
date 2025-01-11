@@ -11,8 +11,9 @@
 
 #include <iostream>
 #include <string>
-#include <cstdlib>  // For std::atof
-#include <stdexcept>  // For std::invalid_argument and std::out_of_range
+#include <cstdlib>
+#include <stdexcept>
+
 class Value {
 private:
     double value;

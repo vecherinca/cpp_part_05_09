@@ -26,5 +26,7 @@ class BitcoinExchange
 	std::map <std::string, std::string> result;
 
 	public:
+        BitcoinExchange();
+        ~BitcoinExchange()
 
 };

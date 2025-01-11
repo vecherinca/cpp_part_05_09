@@ -11,7 +11,6 @@ int RPN::get_res()
 
 RPN::RPN(){}
 
-//here we do the computation
 RPN::RPN(std::string exp){
 
 	int i = 0;
@@ -55,9 +54,6 @@ RPN::RPN(std::string exp){
 		else
 			final_res = stack.top();
 	}
-
-
-	
 
 
 RPN::RPN(RPN const &copy){

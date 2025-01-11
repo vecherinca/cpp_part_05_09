@@ -91,6 +91,7 @@ std::multimap<Date, Value> return_input() {
     std::multimap<std::string, std::string> myMap = initparser<std::multimap<std::string, std::string> >("src/input.txt", true);
     return parse_to_date<std::multimap<Date, Value>, std::multimap<std::string, std::string> >(myMap, true);
 }
+
 void return_computed_values(std::multimap<Date, Value> input, std::map<Date, Value> db)
 {
     for (std::multimap<Date, Value>::const_iterator it = input.begin(); it != input.end(); ++it)
@@ -113,7 +114,7 @@ int main() {
 
     std::map<Date, Value> databse = return_data();
     std::multimap<Date, Value> input = return_input();
-    return_computed_values(input,databse);
+    return_computed_values(input, databse);
 
     return 0;
 }

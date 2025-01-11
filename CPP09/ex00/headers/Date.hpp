@@ -63,13 +63,8 @@ public:
             this->month = month;
             this->year = year;
         } else {
-            // this -> day = 0;
-            // this -> month = 0;
-            // this -> year = 0;
             std::cerr << "Invalid date entered for the following entry." << "Day: " << day<< " Month: " <<  month<< " Year: " << year<< std::endl;
 			throw std::invalid_argument("Value invalid");
-
-//            std::cerr << "Error value is set to zero as atof was performed before. Go check your csv to debug :) " << std::endl;
         }
     }
 

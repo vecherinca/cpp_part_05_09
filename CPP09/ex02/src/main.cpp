@@ -10,14 +10,15 @@ int main(int argc, char* argv[]) {
     std::deque<int> myDeque;
     std::vector<int> myVector;
 
-    //check doubles
-    //check is it okay
+   // verify values
     for (int i = 1; i < argc; ++i) {
         int value = std::atoi(argv[i]);
         myDeque.push_back(value);
         myVector.push_back(value);
     }
 
+    PmergeMe::sort(myDeque);
+    PmergeMe::sort(myVector);
 
 //    std::cout << "Deque contains:" << std::endl;
 //    for (size_t i = 0; i < myDeque.size(); ++i) {
