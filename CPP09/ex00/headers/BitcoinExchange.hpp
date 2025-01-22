@@ -8,7 +8,11 @@
 #include <vector>
 #include <string>
 #include <fcntl.h>
-
+#include <fstream>
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
 #include <iostream>
 #include <string>
 #include <cstdlib>  // For std::atof
@@ -19,14 +23,19 @@
 
 class BitcoinExchange
 {
-  private:
-	std::map <std::string, std::string> history;
-	std::map <Date, std::string> history_parsed;
-	std::map <std::string, std::string> input;
-	std::map <std::string, std::string> result;
+private:
+public:
+        BitcoinExchange() {
+            // Constructor implementation
+        }
 
-	public:
-        BitcoinExchange();
-        ~BitcoinExchange()
-
+        ~BitcoinExchange() {
+            // Destructor implementation
+        }
+        template<typename MapType>
+        MapType initparser(const std::string& filePath, bool is_input);
+        template<typename MapType,typename InputMapType>
+        MapType parse_to_date(const InputMapType& datePriceMap, bool is_input);
+        std::multimap<Date, Value> return_input();
+        std::map<Date, Value> return_data();
 };

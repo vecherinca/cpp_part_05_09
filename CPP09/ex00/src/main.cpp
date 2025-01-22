@@ -5,8 +5,37 @@
 #include <string>
 #include <sstream>
 
+template<typename MapType>
+MapType BitcoinExchange::initparser(const std::string& filePath, bool is_input) {
+    std::ifstream file(filePath.c_str());
+    MapType datePriceMap;
+    std::string line;
+    bool firstLine = true;
+    char sep;
+
+    while (getline(file, line)) {
+        if (firstLine) {
+            firstLine = false;
+            continue;
+        }
+        if (line.empty()) continue;
+
+        sep = is_input ? '|' : ',';
+        std::size_t separatorPos = line.find(sep);
+        if (separatorPos == std::string::npos) continue;
+
+        std::string date = line.substr(0, separatorPos);
+        std::string priceStr = line.substr(separatorPos + 1);
+
+        datePriceMap.insert(std::make_pair(date, priceStr));
+    }
+    file.close();
+
+    return datePriceMap;
+}
+
 template<typename MapType,typename InputMapType>
-MapType parse_to_date(const InputMapType& datePriceMap, bool is_input) {
+MapType BitcoinExchange::parse_to_date(const InputMapType& datePriceMap, bool is_input) {
     MapType output;
 
     for (typename InputMapType::const_iterator it = datePriceMap.begin(); it != datePriceMap.end(); ++it) {
@@ -46,48 +75,19 @@ MapType parse_to_date(const InputMapType& datePriceMap, bool is_input) {
 }
 
 template<typename MapType>
-MapType initparser(const std::string& filePath, bool is_input) {
-    std::ifstream file(filePath.c_str());
-    MapType datePriceMap;
-    std::string line;
-    bool firstLine = true;
-    char sep;
-
-    while (getline(file, line)) {
-        if (firstLine) {
-            firstLine = false;
-            continue;
-        }
-        if (line.empty()) continue;
-
-        sep = is_input ? '|' : ',';
-        std::size_t separatorPos = line.find(sep);
-        if (separatorPos == std::string::npos) continue;
-
-        std::string date = line.substr(0, separatorPos);
-        std::string priceStr = line.substr(separatorPos + 1);
-
-        datePriceMap.insert(std::make_pair(date, priceStr));
-    }
-    file.close();
-
-    return datePriceMap;
-}
-
-template<typename MapType>
 void printMap(const MapType& map) {
     for (typename MapType::const_iterator it = map.begin(); it != map.end(); ++it) {
         std::cout << "Date: " << it->first << ", Value: " << it->second << std::endl;
     }
 }
 
-std::map<Date, Value> return_data() {
+std::map<Date, Value> BitcoinExchange::return_data() {
     std::map<std::string, std::string> myMap = initparser<std::map<std::string, std::string> >("src/data.csv", false);
     return parse_to_date<std::map<Date, Value>, std::map<std::string, std::string> >(myMap, false);
 }
 
 
-std::multimap<Date, Value> return_input() {
+std::multimap<Date, Value> BitcoinExchange::return_input() {
     std::multimap<std::string, std::string> myMap = initparser<std::multimap<std::string, std::string> >("src/input.txt", true);
     return parse_to_date<std::multimap<Date, Value>, std::multimap<std::string, std::string> >(myMap, true);
 }
@@ -110,10 +110,11 @@ void return_computed_values(std::multimap<Date, Value> input, std::map<Date, Val
         }
     }
 }
-int main() {
 
-    std::map<Date, Value> databse = return_data();
-    std::multimap<Date, Value> input = return_input();
+int main() {
+    BitcoinExchange btc;
+    std::map<Date, Value> databse = btc.return_data();
+    std::multimap<Date, Value> input = btc.return_input();
     return_computed_values(input, databse);
 
     return 0;
