@@ -64,7 +64,7 @@ public:
             this->year = year;
         } else {
             std::cerr << "Invalid date entered for the following entry." << "Day: " << day<< " Month: " <<  month<< " Year: " << year<< std::endl;
-			throw std::invalid_argument("Value invalid");
+			throw std::invalid_argument("Invalid Value");
         }
     }
 

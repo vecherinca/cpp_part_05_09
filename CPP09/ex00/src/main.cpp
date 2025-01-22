@@ -1,4 +1,3 @@
-#include "../headers/BitcoinExchange.hpp"
 #include "../src/BitcoinExchange.cpp"
 
 void return_computed_values(std::multimap<Date, Value> input, std::map<Date, Value> db)
@@ -25,6 +24,5 @@ int main() {
     std::map<Date, Value> databse = btc.return_data();
     std::multimap<Date, Value> input = btc.return_input();
     return_computed_values(input, databse);
-
     return 0;
 }

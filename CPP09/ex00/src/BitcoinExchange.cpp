@@ -19,19 +19,17 @@ MapType BitcoinExchange::initparser(const std::string& filePath, bool is_input) 
             firstLine = false;
             continue;
         }
-        if (line.empty()) continue;
-
+        if (line.empty())
+            continue;
         sep = is_input ? '|' : ',';
         std::size_t separatorPos = line.find(sep);
-        if (separatorPos == std::string::npos) continue;
-
+        if (separatorPos == std::string::npos)
+            continue;
         std::string date = line.substr(0, separatorPos);
         std::string priceStr = line.substr(separatorPos + 1);
-
         datePriceMap.insert(std::make_pair(date, priceStr));
     }
     file.close();
-
     return datePriceMap;
 }
 

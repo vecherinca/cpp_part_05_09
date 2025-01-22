@@ -49,7 +49,9 @@ public:
         
         val = std::atof(str.c_str());
 		if (val == 0 && str != "0")
-				throw std::invalid_argument("Value invalid");
+        {       std::cerr << "Invalid value provided: " << val << std::endl;
+				throw std::invalid_argument("Error");
+        }
         return true;
         
     }
