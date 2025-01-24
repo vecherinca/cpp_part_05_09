@@ -6,25 +6,19 @@
 #include <vector>
 #include <cstdlib>
 
-//static u_int32_t get_num(std::string str) {
-//    if (str.size() > 10)
-//        throw std::runtime_error("Error: " + str + " is not a valid positive integer");
-//
-//    size_t i = 0;
-//
-//    while (i < str.size()) {
-//        if (!isdigit(str[i]))
-//            throw std::runtime_error("Error: " + str + " is not a valid positive integer");
-//        i++;
-//    }
-//
-//    u_int64_t res = std::strtoul(str.c_str(), NULL, 10);
-//
-//    if (res > std::numeric_limits<u_int32_t>::max())
-//        throw std::runtime_error("Error: " + str + " is not a valid positive integer");
-//
-//    return static_cast<u_int32_t>(res);
-//}
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int get_value_or_throw_an_error(char arg)
+{
+    if (isdigit(arg))
+    {
+        int value = std::atoi(argv[i]);
+    }
+    else
+        throw
+}
 
 int main(int argc, char* argv[]) {
     std::deque<int> myDeque;
