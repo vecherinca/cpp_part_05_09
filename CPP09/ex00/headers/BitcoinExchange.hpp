@@ -25,13 +25,11 @@ class BitcoinExchange
 {
 private:
 public:
-        BitcoinExchange() {
-            // Constructor implementation
-        }
+        BitcoinExchange() ;
+        ~BitcoinExchange();
+        BitcoinExchange(BitcoinExchange const &cls); 
 
-        ~BitcoinExchange() {
-            // Destructor implementation
-        }
+        BitcoinExchange &operator=(BitcoinExchange const &obj); 
         template<typename MapType>
         MapType initparser(const std::string& filePath, bool is_input);
         template<typename MapType,typename InputMapType>

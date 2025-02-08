@@ -6,6 +6,21 @@
 #include <string>
 #include <sstream>
 
+BitcoinExchange::BitcoinExchange() {
+}
+
+BitcoinExchange::~BitcoinExchange() {
+}
+
+BitcoinExchange::BitcoinExchange(BitcoinExchange const &cls) {
+
+    (void) cls;
+}
+
+BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &obj) {
+    (void) obj;
+    return *this; }
+
 template<typename MapType>
 MapType BitcoinExchange::initparser(const std::string& filePath, bool is_input) {
     std::ifstream file(filePath.c_str());
@@ -64,7 +79,6 @@ MapType BitcoinExchange::parse_to_date(const InputMapType& datePriceMap, bool is
                 output.insert(std::make_pair(date_parsed, val));
             }
             catch (const std::invalid_argument& e) {
-                std::cerr << "Error: " << e.what() << std::endl;
             }
         } else {
             std::cerr << "Invalid format." << std::endl;
